@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Gerenciador do Cronômetro</title>
+</head>
+<body>    
+    <div class="container-fluid mt-1">   
+        {{if .Message}}
+        <div aria-live="polite" aria-atomic="true" class="bg-dark position-relative" style="z-index: 999">
+            <div class="toast-container position-absolute top-0 start-50 translate-middle-x p-3" >
+                <div class="toast bg-secondary text-white border-0">
+                    <div class="toast-header">
+                        <strong class="me-auto">Gerenciador do Cronômetro</strong>
+                    </div>
+                    <div class="toast-body">
+                        {{.Message}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('.toast').toast({delay: 2000});
+                $('.toast').toast('show');
+            });
+        </script>
+        {{end}}      
+        <h1><p class="text-center">{{.Title}}</p></h1>
+        <div class="row justify-content-md-center align-items-center">
+            <div class="col-sm-6 ">
+                <div class="card border-secondary mb-3">
+                    <div class="card-header text-center"><b>Tipo</b></div>
+                    <div class="card-body text-primary">
+                        {{range .ButtonsConfig}}
+                            <a href="{{.URL}}" class="btn btn-outline-{{.Cor}} btn-block btn-lg">{{.Label}}</a>
+                        {{end}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card border-secondary mb-3">
+                    <div class="card-header text-center"><b>Comando</b></div>
+                    <div class="card-body text-primary">
+                        {{range .ButtonsComando}}
+                            <a href="{{.URL}}" class="btn btn-outline-{{.Cor}} btn-block btn-lg">{{.Label}}</a>
+                        {{end}}
+                    </div>
+                </div>
+                
+                <div class="card border-secondary mb-3">
+                    <div class="card-body text-primary">
+                        {{range .ButtonsAdicionais}}
+                            <a href="{{.URL}}" class="btn btn-outline-{{.Cor}} btn-block btn-lg">{{.Label}}</a>
+                        {{end}}
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </div>
+</body>
+</html>
